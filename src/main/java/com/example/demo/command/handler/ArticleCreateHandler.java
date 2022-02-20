@@ -6,9 +6,11 @@ import com.example.demo.model.Author;
 import com.example.demo.repository.ArticleRepository;
 import com.example.demo.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 @AllArgsConstructor
 public class ArticleCreateHandler implements Handler<ArticleCreateCommand, Article> {
     private final AuthorRepository authorRepository;

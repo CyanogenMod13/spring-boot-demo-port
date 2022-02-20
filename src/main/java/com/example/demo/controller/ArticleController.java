@@ -8,13 +8,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/articles")
 @AllArgsConstructor
 public class ArticleController {
     private final ArticleRepository articleRepository;
+    private final ArticleCreateHandler handler;
 
     @GetMapping("/")
     public Map<String, Object> getAll() {
@@ -32,8 +35,6 @@ public class ArticleController {
     public Article get(@PathVariable UUID id) {
         return articleRepository.findById(id).orElseThrow();
     }
-
-    private final ArticleCreateHandler handler;
 
     @PostMapping("/publish")
     public Map<String, Object> publish(@Valid @RequestBody ArticleCreateCommand command) {
